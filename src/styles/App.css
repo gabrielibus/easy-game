@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  font-size: 16px;
+  margin: auto;
+  background-color: teal;
+}
+
+.arenaWrapper {
+  margin: auto;
+  display: flex;
+  flex: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: turquoise;
+  width: 90%;
+}
+
+button {
+  margin: 0.3rem 2rem;
+  padding: 0.3rem;
+}
+
+.playerOne, .playerTwo {
+  display: inline;
+  /* width: 40%; */
+  background-color: tomato;
+}
