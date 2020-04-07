@@ -1,20 +1,20 @@
 {
   "playerOne": {
-    "hp": "10",
-    "def": "9",
-    "magic": "20",
+    "hp": 10,
+    "def": 9,
+    "magic": 20,
     "items": [
         ["cure", 1],
-        ["mana", 1]
+        ["fixArmor", 1]
     ]
   },
   "playerTwo": {
-    "hp": "11",
-    "def": "9",
-    "magic": "30",
+    "hp": 11,
+    "def": 9,
+    "magic": 30,
     "items": [
         ["cure", 2],
-        ["mana", 2]
+        ["fixArmor", 2]
     ]
   }
 }

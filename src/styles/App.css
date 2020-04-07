@@ -1,8 +1,11 @@
+body{
+  background-color: teal;
+}
+
 .App {
   text-align: center;
   font-size: 16px;
   margin: auto;
-  background-color: teal;
 }
 
 .arenaWrapper {
@@ -11,7 +14,7 @@
   flex: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: turquoise;
+  /* background-color: turquoise; */
   width: 90%;
 }
 
@@ -20,10 +23,14 @@ button {
   padding: 0.3rem;
 }
 
-.playerOne, .playerTwo {
+.playerOne {
   display: inline;
-  /* width: 40%; */
-  background-color: tomato;
+  /* background-color: blue; */
+}
+
+.playerTwo {
+  display: inline;
+  /* background-color: tomato; */
 }
 
 .items {
@@ -32,4 +39,8 @@ button {
 
 .items button {
   margin: 0.2rem;
+}
+
+#active {
+  background-color: wheat;
 }
