@@ -25,3 +25,11 @@ button {
   /* width: 40%; */
   background-color: tomato;
 }
+
+.items {
+  display: inline-block;
+}
+
+.items button {
+  margin: 0.2rem;
+}

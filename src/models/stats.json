@@ -1,7 +1,7 @@
 {
   "playerOne": {
     "hp": "10",
-    "def": "8",
+    "def": "9",
     "magic": "20",
     "items": [
         ["cure", 1],
@@ -9,8 +9,8 @@
     ]
   },
   "playerTwo": {
-    "hp": "20",
-    "def": "15",
+    "hp": "11",
+    "def": "9",
     "magic": "30",
     "items": [
         ["cure", 2],

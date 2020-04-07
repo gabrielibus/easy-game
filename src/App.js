@@ -18,19 +18,50 @@ function App() {
   // const temp = Object.entries(defaultStats)
   const [playerOne, setPlayerOne] = useState(defaultStats.playerOne)
   const [playerTwo, setPlayerTwo] = useState(defaultStats.playerTwo)
-  const [scoreOne, setScoreOne] = useState("")
-  const [scoreTwo, setScoreTwo] = useState("")
-  const [turn, setTurn] = useState("playerOne")
+  const [agresor, setAggressor] = useState("playerOne")
+  const [defender, setDefender] = useState("playerTwo")
+  const [turns, setTurns] = useState(1)
+  const players = { playerOne, playerTwo }
 
-  function entries(obj) {
+  let entries = (obj) => {
     return Object.entries(obj)
   }
 
-  // let cosa = (Object.entries(stats[0][1])).slice()
-  // console.log(entries(playerOne))
+  let switchPlayers = () => {
+    setAggressor(defender)
+    setDefender(agresor)
+  }
+
+  let updateStat = (key, value) => {
+    agresor === "playerOne"
+      ? setPlayerTwo({ ...playerTwo, [key]: value })
+      : setPlayerOne({ ...playerOne, [key]: value })
+  }
+
+  let attackHp = () => {
+    let damage = Math.abs(players[agresor].hp - players[defender].def)
+    let newHp = players[defender].hp - damage
+    damage > 0 ? updateStat("hp", newHp) : updateStat("hp", newHp - 1)
+    finishTurn()
+  }
+
+  let attackDef = () => {
+    let newDef = players[defender].def - 1
+    updateStat("def", newDef)
+    finishTurn()
+  }
+
+  let items = (idx) => {alert(idx+1)}
+
+  let finishTurn = () => {
+    setTurns(turns + 1)
+    switchPlayers()
+  }
+
   return (
     <div className='App'>
       <h1>my turns based game</h1>
+      <h5>turn {turns}</h5>
       <div className='arenaWrapper'>
         <div className='playerOne'>
           {entries(playerOne).map((e, index) => (
@@ -58,13 +89,19 @@ function App() {
         </div>
       </div>
       <div className='actionsWrapper'>
-        <h3> {turn} turn </h3>
-        <button
-          onClick={() => actions.attack(playerOne.healt, playerTwo.defense)}>
-          atacar
-        </button>
-        <button>defender</button>
+        <h3> {agresor} turn </h3>
+        <button onClick={() => attackHp()}>atacar</button>
+        <button onClick={() => attackDef()}>romper armadura</button>
         <button>magia</button>
+        <div className='items'>
+          <h5>items</h5>
+          {players[agresor].items.map((e, idx) => (
+            <button key={idx} onClick={() => items(idx)}>
+              {e[0]}: {e[1]}
+            </button>
+          ))}
+        </div>
+        <button onClick={() => finishTurn()}>finalizar</button>
       </div>
     </div>
   )
