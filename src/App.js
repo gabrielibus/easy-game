@@ -1,6 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./styles/App.css"
 import defaultStats from "./models/stats.json"
+import sword from "./images/sword.png"
+import shield from "./images/shield.png"
+import beer from "./images/beer.png"
+import iceMan from "./images/iceMan.png"
+import monsterFire from "./images/monsterFire.png"
+
 // import actions from "./actions/actions.js"
 
 /* STEPS! 
@@ -20,117 +26,138 @@ function App() {
   const [defender, setDefender] = useState("playerTwo")
   const [turns, setTurns] = useState(1)
   const players = { playerOne, playerTwo }
-  
+
+
+  let defenderId = agresor === "playerOne" ? "imgTwo" : "imgOne"
+
+  useEffect(() => {
+    document.getElementById(defenderId).className = ""
+    // document.getElementById('indicatorOne').className = "transparent"
+    // document.getElementById('indicatorTwo').className = "transparent"
+  })
+
   let actions = {
     entries: (obj) => {
       return Object.entries(obj)
     },
     attackHp: () => {
-      let damage = players[agresor].hp - players[defender].def
-      let newHp = players[defender].hp
+      let damage = players[agresor].Healt - players[defender].Armor
+      let newHp = players[defender].Healt
+      let defenderId = agresor === "playerOne" ? "imgTwo" : "imgOne"
+      let indicatorId =
+        agresor === "playerOne" ? "indicatorTwo" : "indicatorOne"
       damage > 0
-      ? actions.updateDefenderStat("hp", newHp - damage)
-      : actions.updateDefenderStat("hp", newHp - 1)
+        ? actions.updateDefenderStat("Healt", newHp - damage)
+        : actions.updateDefenderStat("Healt", newHp - 1)
+      document.getElementById(defenderId).className = "animated tada"
+      damage > 0
+        ? (document.getElementById(indicatorId).innerHTML = damage)
+        : (document.getElementById(indicatorId).innerHTML = 1)
+      document.getElementById(indicatorId).className = "animated fadeOutUp"
       actions.finishTurn()
     },
     attackDef: () => {
-      let newDef = players[defender].def
-      actions.updateDefenderStat("def", newDef - 1)
+      let newDef = players[defender].Armor
+      actions.updateDefenderStat("Armor", newDef - 1)
       actions.finishTurn()
     },
     finishTurn: () => {
       setTurns(turns + 1)
       actions.switchPlayers()
     },
-    // items: (name) => {
-      //   let agresorHp = players[agresor].hp
-      //   let agresorDef = players[agresor].def
-      //   name[0] === 'cure'
-      //   ? items.cure(agresorHp)
-      //   : items.fixArmor(agresorDef)
-      //   // idx === 0 ? up
-      
-      //   actions.updateAgresorStat('def', agresorHp + 2)
-    //   actions.finishTurn()
-    // },
     switchPlayers: () => {
       setAggressor(defender)
       setDefender(agresor)
     },
     updateAgresorStat: (key, value) => {
       agresor === "playerOne"
-      ? setPlayerOne({ ...playerOne, [key]: value })
-      : setPlayerTwo({ ...playerTwo, [key]: value })
+        ? setPlayerOne({ ...playerOne, [key]: value })
+        : setPlayerTwo({ ...playerTwo, [key]: value })
     },
     updateDefenderStat: (key, value) => {
       agresor === "playerOne"
-      ? setPlayerTwo({ ...playerTwo, [key]: value })
-      : setPlayerOne({ ...playerOne, [key]: value })
+        ? setPlayerTwo({ ...playerTwo, [key]: value })
+        : setPlayerOne({ ...playerOne, [key]: value })
     },
     helpItem: (itemArray) => {
       let method = itemArray[0]
       items[method]()
-    }
+    },
   }
-  
-    let items = {
-      cure: () => {
-        const agresorHp = players[agresor].hp
-        actions.updateAgresorStat('hp', agresorHp + 2)
-        actions.finishTurn()
-      },
-      fixArmor: () => {
-        const agresorDef = players[agresor].def
-        actions.updateAgresorStat('def', agresorDef + 2)
-        actions.finishTurn()
-      }
-    }
-  
+
+  let items = {
+    cure: () => {
+      const agresorHp = players[agresor].Healt
+      actions.updateAgresorStat("Healt", agresorHp + 2)
+      actions.finishTurn()
+    },
+    fixArmor: () => {
+      const agresorDef = players[agresor].Armor
+      actions.updateAgresorStat("Armor", agresorDef + 2)
+      actions.finishTurn()
+    },
+  }
+
   return (
     <div className='App'>
-      <h1>my turns based game</h1>
-      <h5>turn {turns}</h5>
-      <div className='arenaWrapper'>
-        <div className='playerOne' id={agresor === 'playerOne' ? 'active' : ''}>
-          {actions.entries(playerOne).map((e, idx) => (
-            <table key={idx}>
-              <thead>
-                <tr>
-                  <th>{e[0]}</th>
-                  <td>{e[1]}</td>
-                </tr>
-              </thead>
-            </table>
-          ))}
-        </div>
-        <div className='playerTwo' id={agresor === 'playerTwo' ? 'active' : ''}>
-          {actions.entries(playerTwo).map((e, idx) => (
-            <table key={idx}>
-              <thead>
-                <tr>
-                  <th>{e[0]}</th>
-                  <td>{e[1]}</td>
-                </tr>
-              </thead>
-            </table>
-          ))}
-        </div>
-      </div>
+      <h1>Batalla en el Inframundo</h1>
+      <h3>
+        Player{"  "}
+        <span className={agresor === "playerOne" ? "turnOne" : "turnTwo"}>
+          {agresor === "playerOne" ? "one" : "two"}
+        </span>
+        {"  "}
+        turn
+      </h3>
       <div className='actionsWrapper'>
-        <h3> {agresor} turn </h3>
-        <button onClick={() => actions.attackHp()}>atacar</button>
-        <button onClick={() => actions.attackDef()}>romper armadura</button>
-        <button>habilidades</button>
-        <div className='items'>
-          <h5>items</h5>
-          {players[agresor].items.map((e, idx) => (
-            <button key={idx} onClick={() => actions.helpItem(e)}>
-              {e[0]}: {e[1]}
-            </button>
-          ))}
+        <div className='warriors' id='warrior-left'>
+          <div
+            className='playerOne'
+            id={agresor === "playerOne" ? "active" : ""}>
+            {actions.entries(playerOne).map((e, idx) => (
+              <div className={e[0] === "Healt" ? "healt" : "armor"} key={idx}>
+                {e[0]}:{e[1]}
+              </div>
+            ))}
+          </div>
+          <img id='imgOne' src={iceMan} alt='warrior' />
+          <p id='indicatorOne' className=''>
+            
+          </p>
         </div>
-        <button onClick={() => actions.finishTurn()}>finalizar</button>
+        <div className='actionsMenu'>
+          <div className='iconsWrapper'>
+            <div className='icons' onClick={() => actions.attackHp()}>
+              <img src={sword} alt='swords' />
+              <div> atacar</div>
+            </div>
+            <div className='icons' onClick={() => actions.attackDef()}>
+              <img src={shield} alt='shields' />
+              <div> debilitar</div>
+            </div>
+            <div className='icons' onClick={() => actions.finishTurn()}>
+              <img src={beer} alt='beers' />
+              <div> pasar</div>
+            </div>
+          </div>
+        </div>
+        <div className='warriors' id='warrior-right'>
+          <div
+            className='playerTwo'
+            id={agresor === "playerTwo" ? "active" : ""}>
+            {actions.entries(playerTwo).map((e, idx) => (
+              <div className={e[0] === "Healt" ? "healt" : "armor"} key={idx}>
+                {e[0]}:{e[1]}
+              </div>
+            ))}
+          </div>
+          <img id='imgTwo' src={monsterFire} alt='monster' />
+          <p id='indicatorTwo' className=''>
+            
+          </p>
+        </div>
       </div>
+      <h5>turn {turns / 2}</h5>
     </div>
   )
 }
@@ -153,15 +180,15 @@ export default App
 // }
 
 // let attackHp = () => {
-//   let damage = Math.abs(players[agresor].hp - players[defender].def)
-//   let newHp = players[defender].hp - damage
-//   damage > 0 ? updateDefStat("hp", newHp) : updateDefStat("hp", newHp - 1)
+//   let damage = Math.abs(players[agresor].Healt - players[defender].Armor)
+//   let newHp = players[defender].Healt - damage
+//   damage > 0 ? updateDefStat("Healt", newHp) : updateDefStat("Healt", newHp - 1)
 //   finishTurn()
 // }
 
 // let attackDef = () => {
-//   let newDef = players[defender].def - 1
-//   updateDefStat("def", newDef)
+//   let newDef = players[defender].Armor - 1
+//   updateDefStat("Armor", newDef)
 //   finishTurn()
 // }
 

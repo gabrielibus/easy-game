@@ -1,36 +1,48 @@
-body{
-  background-color: teal;
+body {
+  font-family: "Titillium Web", sans-serif;
+  font-family: "Spartan", sans-serif;
+  font-size: 16px;
+  max-width: 780px;
+  margin: auto;
+  background-color: whitesmoke;
+  /* background}-color: rgb(88, 89, 167); */
 }
 
 .App {
+  font-family: "Spartan";
   text-align: center;
-  font-size: 16px;
+  background-color: white;
   margin: auto;
 }
 
-.arenaWrapper {
-  margin: auto;
-  display: flex;
-  flex: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  /* background-color: turquoise; */
-  width: 90%;
+h1 {
+  font-family: "Titillium Web";
+  font-size: 2.5rem;
 }
 
 button {
-  margin: 0.3rem 2rem;
+  margin: 0rem 0.5rem;
   padding: 0.3rem;
 }
 
 .playerOne {
-  display: inline;
-  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  padding: 0.55rem 0;
 }
 
 .playerTwo {
-  display: inline;
-  /* background-color: tomato; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  padding: 0.55rem 0;
 }
 
 .items {
@@ -41,6 +53,139 @@ button {
   margin: 0.2rem;
 }
 
-#active {
-  background-color: wheat;
+img {
+  width: 30px;
 }
+
+.actionsWrapper {
+  width: 90%;
+  background-color: rgb(230, 230, 230);
+  display: flex;
+  flex-direction: row;
+  /* justify-content: right; */
+  align-items: center;
+  border-radius: 0.5rem;
+  margin: auto;
+}
+
+.actionsMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  width: 26%;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 0.5rem 0.5rem;
+  padding: 0.3rem;
+  /* background-color: tan; */
+}
+.icons:hover {
+  /* padding: 0.5rem; */
+  /* transition: 0.6s; */
+  transform: scale(1.3);
+  font-weight: bold;
+}
+
+.icons p {
+  margin-top: 0;
+}
+.icons img {
+  margin-right: 0.4rem;
+}
+.warriors {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  /* background-color: thistle; */
+}
+#warrior-left {
+  background-color: #2979ff;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+#warrior-right {
+  background-color: #ff6a6a;
+  /* border-radius: 0.5rem; */
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.warriors img {
+  width: 45%;
+  margin: 0.1rem;
+}
+
+#turnOne {
+  background-color: #2979ff;
+}
+
+#turnTwo {
+  background-color: #ff3d00;
+}
+
+.turnOne {
+  background-color: #2979ff;
+  border-radius: 1rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.turnTwo {
+  background-color: #ff3d00;
+  border-radius: 1rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.healt {
+  background-color: #0d47a1;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  /* background-color: blue; */
+  /* width: 50%; */
+  padding: 0.8rem;
+  border-radius: 5rem;
+}
+
+.armor {
+  background-color: #b71c1c;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  /* background-color: red; */
+  /* width: 50%; */
+  padding: 0.8rem;
+  border-radius: 5rem;
+
+}
+
+#indicatorOne, #indicatorTwo {
+font-weight: bolder;
+font-size: 2rem;
+margin-top: -4.5rem;
+margin-left: 3rem;
+margin-bottom: 4rem;
+color: black;
+}
+
+.transparent {
+  color: transparent;
+}
+
+
+
+
+
+
+
+
