@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
+import PlayerTurn from "./components/PlayerTurn"
+import ActionsMenu from "./components/ActionsMenu"
 import "./styles/App.css"
 import defaultStats from "./models/stats.json"
-import sword from "./images/sword.png"
-import shield from "./images/shield.png"
-import beer from "./images/beer.png"
+
 import iceMan from "./images/iceMan.png"
 import monsterFire from "./images/monsterFire.png"
 
@@ -19,7 +19,6 @@ import monsterFire from "./images/monsterFire.png"
 */
 
 function App() {
-  // const temp = Object.entries(defaultStats)
   const [playerOne, setPlayerOne] = useState(defaultStats.playerOne)
   const [playerTwo, setPlayerTwo] = useState(defaultStats.playerTwo)
   const [agresor, setAggressor] = useState("playerOne")
@@ -40,15 +39,13 @@ function App() {
     attackHp: () => {
       if (damage > 0) {
         actions.updateDefenderStat("Healt", defenderHealt - damage)
-      }
-      else {
+      } else {
         actions.updateDefenderStat("Healt", defenderHealt - 1)
-      } 
+      }
       actions.finishTurn()
     },
     attackDef: () => {
-      let newDef = players[defender].Armor
-      actions.updateDefenderStat("Armor", newDef - 1)
+      actions.updateDefenderStat("Armor", defenderArmor - 1)
       actions.finishTurn()
     },
     finishTurn: () => {
@@ -77,13 +74,11 @@ function App() {
 
   let items = {
     cure: () => {
-      const agresorHp = players[agresor].Healt
-      actions.updateAgresorStat("Healt", agresorHp + 2)
+      actions.updateAgresorStat("Healt", agresorHealt + 2)
       actions.finishTurn()
     },
     fixArmor: () => {
-      const agresorDef = players[agresor].Armor
-      actions.updateAgresorStat("Armor", agresorDef + 2)
+      actions.updateAgresorStat("Armor", agresorArmor + 2)
       actions.finishTurn()
     },
   }
@@ -91,14 +86,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Batalla en el Inframundo</h1>
-      <h3>
-        Player{"  "}
-        <span id={agresor}>
-          {agresor === "playerOne" ? "one" : "two"}
-        </span>
-        {"  "}
-        turn
-      </h3>
+      <PlayerTurn agresor={agresor} />
       <div className='actionsWrapper'>
         <div className='warriors' id='warrior-left'>
           <div
@@ -112,22 +100,11 @@ function App() {
           </div>
           <img id='playerLeft' src={iceMan} alt='warrior' />
         </div>
-        <div className='actionsMenu'>
-          <div className='iconsWrapper'>
-            <div className='icons' onClick={() => actions.attackHp()}>
-              <img src={sword} alt='swords' />
-              <div> atacar</div>
-            </div>
-            <div className='icons' onClick={() => actions.attackDef()}>
-              <img src={shield} alt='shields' />
-              <div> debilitar</div>
-            </div>
-            <div className='icons' onClick={() => actions.finishTurn()}>
-              <img src={beer} alt='beers' />
-              <div> pasar</div>
-            </div>
-          </div>
-        </div>
+        <ActionsMenu
+          attackHp={() => actions.attackHp()}
+          attackDef={() => actions.attackDef()}
+          finishTurn={() => actions.finishTurn()}
+        />
         <div className='warriors' id='warrior-right'>
           <div
             className='playerTwo'
