@@ -27,33 +27,23 @@ function App() {
   const [turns, setTurns] = useState(1)
   const players = { playerOne, playerTwo }
 
-
-  let defenderId = agresor === "playerOne" ? "imgTwo" : "imgOne"
-
-  useEffect(() => {
-    document.getElementById(defenderId).className = ""
-    // document.getElementById('indicatorOne').className = "transparent"
-    // document.getElementById('indicatorTwo').className = "transparent"
-  })
+  let agresorHealt = players[agresor].Healt
+  let agresorArmor = players[agresor].Armor
+  let defenderHealt = players[defender].Healt
+  let defenderArmor = players[defender].Armor
+  let damage = agresorHealt - defenderArmor
 
   let actions = {
     entries: (obj) => {
       return Object.entries(obj)
     },
     attackHp: () => {
-      let damage = players[agresor].Healt - players[defender].Armor
-      let newHp = players[defender].Healt
-      let defenderId = agresor === "playerOne" ? "imgTwo" : "imgOne"
-      let indicatorId =
-        agresor === "playerOne" ? "indicatorTwo" : "indicatorOne"
-      damage > 0
-        ? actions.updateDefenderStat("Healt", newHp - damage)
-        : actions.updateDefenderStat("Healt", newHp - 1)
-      document.getElementById(defenderId).className = "animated tada"
-      damage > 0
-        ? (document.getElementById(indicatorId).innerHTML = damage)
-        : (document.getElementById(indicatorId).innerHTML = 1)
-      document.getElementById(indicatorId).className = "animated fadeOutUp"
+      if (damage > 0) {
+        actions.updateDefenderStat("Healt", defenderHealt - damage)
+      }
+      else {
+        actions.updateDefenderStat("Healt", defenderHealt - 1)
+      } 
       actions.finishTurn()
     },
     attackDef: () => {
@@ -103,7 +93,7 @@ function App() {
       <h1>Batalla en el Inframundo</h1>
       <h3>
         Player{"  "}
-        <span className={agresor === "playerOne" ? "turnOne" : "turnTwo"}>
+        <span id={agresor}>
           {agresor === "playerOne" ? "one" : "two"}
         </span>
         {"  "}
@@ -120,10 +110,7 @@ function App() {
               </div>
             ))}
           </div>
-          <img id='imgOne' src={iceMan} alt='warrior' />
-          <p id='indicatorOne' className=''>
-            
-          </p>
+          <img id='playerLeft' src={iceMan} alt='warrior' />
         </div>
         <div className='actionsMenu'>
           <div className='iconsWrapper'>
@@ -151,50 +138,12 @@ function App() {
               </div>
             ))}
           </div>
-          <img id='imgTwo' src={monsterFire} alt='monster' />
-          <p id='indicatorTwo' className=''>
-            
-          </p>
+          <img id='playerRight' src={monsterFire} alt='monster' />
         </div>
       </div>
-      <h5>turn {turns / 2}</h5>
+      <h5>Round {Math.ceil(turns / 2)}</h5>
     </div>
   )
 }
 
 export default App
-
-// let entries = (obj) => {
-//   return Object.entries(obj)
-// }
-
-// let switchPlayers = () => {
-//   setAggressor(defender)
-//   setDefender(agresor)
-// }
-
-// let updateDefStat = (key, value) => {
-//   agresor === "playerOne"
-//     ? setPlayerTwo({ ...playerTwo, [key]: value })
-//     : setPlayerOne({ ...playerOne, [key]: value })
-// }
-
-// let attackHp = () => {
-//   let damage = Math.abs(players[agresor].Healt - players[defender].Armor)
-//   let newHp = players[defender].Healt - damage
-//   damage > 0 ? updateDefStat("Healt", newHp) : updateDefStat("Healt", newHp - 1)
-//   finishTurn()
-// }
-
-// let attackDef = () => {
-//   let newDef = players[defender].Armor - 1
-//   updateDefStat("Armor", newDef)
-//   finishTurn()
-// }
-
-// let items = (idx) => {alert(idx+1)}
-
-// let finishTurn = () => {
-//   setTurns(turns + 1)
-//   switchPlayers()
-// }
