@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react"
 import PlayerTurn from "./components/PlayerTurn"
+import warrior from "./components/Warriors"
 import ActionsMenu from "./components/ActionsMenu"
+import RoundCounter from "./components/RoundCounter"
 import "./styles/App.css"
 import defaultStats from "./models/stats.json"
+import Warriors from "./components/Warriors"
 
 import iceMan from "./images/iceMan.png"
 import monsterFire from "./images/monsterFire.png"
@@ -89,16 +92,14 @@ function App() {
       <PlayerTurn agresor={agresor} />
       <div className='actionsWrapper'>
         <div className='warriors' id='warrior-left'>
-          <div
-            className='playerOne'
-            id={agresor === "playerOne" ? "active" : ""}>
-            {actions.entries(playerOne).map((e, idx) => (
-              <div className={e[0] === "Healt" ? "healt" : "armor"} key={idx}>
-                {e[0]}:{e[1]}
-              </div>
-            ))}
-          </div>
-          <img id='playerLeft' src={iceMan} alt='warrior' />
+          <Warriors
+            avatar={iceMan}
+            agresor={agresor}
+            player='playerOne'
+            id='playerLeft'
+            playerOne={playerOne}
+            entries={(obj) => actions.entries(obj)}
+          />
         </div>
         <ActionsMenu
           attackHp={() => actions.attackHp()}
@@ -106,19 +107,17 @@ function App() {
           finishTurn={() => actions.finishTurn()}
         />
         <div className='warriors' id='warrior-right'>
-          <div
-            className='playerTwo'
-            id={agresor === "playerTwo" ? "active" : ""}>
-            {actions.entries(playerTwo).map((e, idx) => (
-              <div className={e[0] === "Healt" ? "healt" : "armor"} key={idx}>
-                {e[0]}:{e[1]}
-              </div>
-            ))}
-          </div>
-          <img id='playerRight' src={monsterFire} alt='monster' />
+          <Warriors
+            avatar={monsterFire}
+            agresor={agresor}
+            player='playerTwo'
+            id='playerRight'
+            playerOne={playerTwo}
+            entries={(obj) => actions.entries(obj)}
+          />
         </div>
       </div>
-      <h5>Round {Math.ceil(turns / 2)}</h5>
+      <RoundCounter turns={turns} />
     </div>
   )
 }
