@@ -7,11 +7,18 @@ function ActionsMenu(props) {
   return (
     <div className='actionsMenu'>
       <div className='iconsWrapper'>
-        <div className='icons' onClick={() => props.attackHp()}>
+        <div
+          className='icons'
+          id='attackHealt'
+          onClick={() => props.attackHp()}>
           <img src={sword} alt='swords' />
           <div> atacar</div>
+          <p id='damageHealt'></p>
         </div>
-        <div className='icons' onClick={() => props.attackDef()}>
+        <div
+          className='icons'
+          id='attackArmor'
+          onClick={() => props.attackDef()}>
           <img src={shield} alt='shields' />
           <div> debilitar</div>
         </div>

@@ -87,12 +87,22 @@ img {
   padding: 0.3rem;
   /* background-color: tan; */
 }
+
 .icons:hover {
   /* padding: 0.5rem; */
   /* transition: 0.6s; */
   transform: scale(1.3);
   font-weight: bold;
 }
+
+#attackHealt:hover {
+  color: #b71c1c;
+}
+
+#attackArmor:hover {
+  color: #0d47a1;
+}
+
 
 .icons p {
   margin-top: 0;
@@ -104,10 +114,8 @@ img {
   width: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: left;
-  align-items: center;
-  /* background-color: thistle; */
 }
+
 #warrior-left {
   background-color: #2979ff;
   border-top-left-radius: 0.5rem;
@@ -116,7 +124,6 @@ img {
 
 #warrior-right {
   background-color: #ff6a6a;
-  /* border-radius: 0.5rem; */
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
@@ -124,6 +131,8 @@ img {
 .warriors img {
   width: 45%;
   margin: 0.1rem;
+  position: relative;
+  z-index: 10;
 }
 
 #playerOne {
@@ -150,26 +159,18 @@ img {
   padding: 0.3rem 0.5rem;
 }
 
-.healt {
-  background-color: #0d47a1;
-  font-weight: 500;
-  color: white;
-  text-align: center;
-  /* background-color: blue; */
-  /* width: 50%; */
-  padding: 0.5rem 0.8rem;
-  border-radius: 5rem;
-}
-
-.armor {
+.healt, .armor {
   background-color: #b71c1c;
   font-weight: 500;
   color: white;
   text-align: center;
-  /* background-color: red; */
-  /* width: 50%; */
   padding: 0.5rem 0.8rem;
+  margin: 0 0.4rem;
   border-radius: 5rem;
+}
+
+.armor {
+  background-color: #0d47a1;
 }
 
 #drainHealt,

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import PlayerTurn from "./components/PlayerTurn"
-import warrior from "./components/Warriors"
 import ActionsMenu from "./components/ActionsMenu"
 import RoundCounter from "./components/RoundCounter"
 import "./styles/App.css"
@@ -9,17 +8,6 @@ import Warriors from "./components/Warriors"
 
 import iceMan from "./images/iceMan.png"
 import monsterFire from "./images/monsterFire.png"
-
-// import actions from "./actions/actions.js"
-
-/* STEPS! 
-  1. Create a json with initial stats
-  2. Create states: players, agresor, defender, turns
-  3. Create Divs structure for playes scores
-  4. Create Divs sctructure for actions menu
-  5. Creacte actions:
-  6. style css
-*/
 
 function App() {
   const [playerOne, setPlayerOne] = useState(defaultStats.playerOne)
@@ -69,7 +57,7 @@ function App() {
         ? setPlayerTwo({ ...playerTwo, [key]: value })
         : setPlayerOne({ ...playerOne, [key]: value })
     },
-    helpItem: (itemArray) => {
+    spendItem: (itemArray) => {
       let method = itemArray[0]
       items[method]()
     },
@@ -95,9 +83,9 @@ function App() {
           <Warriors
             avatar={iceMan}
             agresor={agresor}
-            player='playerOne'
-            id='playerLeft'
-            playerOne={playerOne}
+            playerId='playerOne'
+            position='playerLeft'
+            playerStats={playerOne}
             entries={(obj) => actions.entries(obj)}
           />
         </div>
@@ -105,14 +93,15 @@ function App() {
           attackHp={() => actions.attackHp()}
           attackDef={() => actions.attackDef()}
           finishTurn={() => actions.finishTurn()}
+          damage={damage}
         />
         <div className='warriors' id='warrior-right'>
           <Warriors
             avatar={monsterFire}
             agresor={agresor}
-            player='playerTwo'
-            id='playerRight'
-            playerOne={playerTwo}
+            playerId='playerTwo'
+            position='playerRight'
+            playerStats={playerTwo}
             entries={(obj) => actions.entries(obj)}
           />
         </div>
