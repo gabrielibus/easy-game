@@ -94,15 +94,38 @@ img {
   transform: scale(1.3);
   font-weight: bold;
 }
+.modalChoice {
+  padding: 0.5rem;
+}
+.red {
+  cursor: pointer;
+  background-color: rgb(231, 231, 231);
+  border-radius: 0.5rem;
+  color: #b71c1c;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+.blue {
+  background-color: rgb(228, 228, 228);
+  border-radius: 0.5rem;
+  color: #0d47a1;
+  padding: 0.5rem;
+  font-weight: bold;
+}
 
 #attackHealt:hover {
   color: #b71c1c;
 }
 
-#attackArmor:hover {
+#attackArmor:hover .blue {
   color: #0d47a1;
 }
 
+.btnsChoice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 .icons p {
   margin-top: 0;
@@ -185,10 +208,6 @@ img {
 
 .transparent {
   color: transparent;
-}
-
-.red {
-  color: red;
 }
 
 #indicatorTwo,

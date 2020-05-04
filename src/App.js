@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import Popup from "reactjs-popup";
 import PlayerTurn from "./components/PlayerTurn"
 import ActionsMenu from "./components/ActionsMenu"
 import RoundCounter from "./components/RoundCounter"
@@ -21,7 +22,7 @@ function App() {
   let agresorArmor = players[agresor].Armor
   let defenderHealt = players[defender].Healt
   let defenderArmor = players[defender].Armor
-  let damage = agresorHealt - defenderArmor
+  let damage = agresorHealt - defenderArmor > 1 ? agresorHealt - defenderArmor : 1
 
   let actions = {
     entries: (obj) => {
@@ -76,7 +77,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>Batalla en el Inframundo</h1>
+      <h1>Batalla en el Inframundod</h1>
       <PlayerTurn agresor={agresor} />
       <div className='actionsWrapper'>
         <div className='warriors' id='warrior-left'>
@@ -93,6 +94,8 @@ function App() {
           attackHp={() => actions.attackHp()}
           attackDef={() => actions.attackDef()}
           finishTurn={() => actions.finishTurn()}
+          defenderHealt={defenderHealt}
+          defenderArmor={defenderArmor}
           damage={damage}
         />
         <div className='warriors' id='warrior-right'>
