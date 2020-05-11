@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import Popup from "reactjs-popup";
 import PlayerTurn from "./components/PlayerTurn"
 import ActionsMenu from "./components/ActionsMenu"
 import RoundCounter from "./components/RoundCounter"
@@ -90,14 +89,7 @@ function App() {
             entries={(obj) => actions.entries(obj)}
           />
         </div>
-        <ActionsMenu
-          attackHp={() => actions.attackHp()}
-          attackDef={() => actions.attackDef()}
-          finishTurn={() => actions.finishTurn()}
-          defenderHealt={defenderHealt}
-          defenderArmor={defenderArmor}
-          damage={damage}
-        />
+        <div className='vsDiv'>vs</div>
         <div className='warriors' id='warrior-right'>
           <Warriors
             avatar={monsterFire}
@@ -109,6 +101,16 @@ function App() {
           />
         </div>
       </div>
+        <ActionsMenu
+          attackHp={() => actions.attackHp()}
+          attackDef={() => actions.attackDef()}
+          finishTurn={() => actions.finishTurn()}
+          updateAgresorStat={()=> actions.updateAgresorStat("Healt", agresorHealt + 1)}
+          defenderHealt={defenderHealt}
+          defenderArmor={defenderArmor}
+          damage={damage}
+          agresor={agresor}
+        />
       <RoundCounter turns={turns} />
     </div>
   )

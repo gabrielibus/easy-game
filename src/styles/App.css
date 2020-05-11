@@ -57,28 +57,48 @@ img {
   width: 30px;
 }
 
+#smallBeer {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .actionsWrapper {
   width: 90%;
   background-color: rgb(230, 230, 230);
   display: flex;
   flex-direction: row;
-  /* justify-content: right; */
+  justify-content: space-between;
   align-items: center;
   border-radius: 0.5rem;
   margin: auto;
+  margin-top: 1rem;
+}
+
+.vsDiv {
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 .actionsMenu {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0;
-  width: 26%;
+  width: 90%;
+  margin: auto;
+}
+
+.iconsWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .icons {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: left;
   font-size: 1rem;
@@ -86,6 +106,16 @@ img {
   margin: 0.5rem 0.5rem;
   padding: 0.3rem;
   /* background-color: tan; */
+}
+
+.modalHeader, .modalContent {
+  color: black;
+  text-align: center;
+  margin: auto;
+}
+
+.modals {
+  text-align: center;
 }
 
 .icons:hover {
