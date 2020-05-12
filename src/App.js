@@ -21,27 +21,37 @@ function App() {
   let agresorArmor = players[agresor].Armor
   let defenderHealt = players[defender].Healt
   let defenderArmor = players[defender].Armor
-  let damage = agresorHealt - defenderArmor > 1 ? agresorHealt - defenderArmor : 1
+  let damage =
+    agresorHealt - defenderArmor > 1 ? agresorHealt - defenderArmor : 1
 
   let actions = {
     entries: (obj) => {
       return Object.entries(obj)
     },
     attackHp: () => {
+      const defenderLife = defenderHealt - damage
       if (damage > 0) {
-        actions.updateDefenderStat("Healt", defenderHealt - damage)
+        defenderLife >= 0 
+        ? actions.updateDefenderStat("Healt", defenderHealt - damage)
+        : actions.updateDefenderStat('Healt', 0)
       } else {
         actions.updateDefenderStat("Healt", defenderHealt - 1)
       }
-      actions.finishTurn()
     },
     attackDef: () => {
-      actions.updateDefenderStat("Armor", defenderArmor - 1)
-      actions.finishTurn()
+      defenderArmor - 1 >= 0
+      ? actions.updateDefenderStat("Armor", defenderArmor - 1)
+      : actions.updateDefenderStat("Armor", 0)
     },
     finishTurn: () => {
-      setTurns(turns + 1)
-      actions.switchPlayers()
+      if (agresorHealt <= 0) {
+        actions.updateDefenderStat('Healt', 0)
+        alert(defender + " WINS" + "  El juego se reiniciará")
+        window.location.reload(true)
+      } else {
+        setTurns(turns + 1)
+        actions.switchPlayers()
+      }
     },
     switchPlayers: () => {
       setAggressor(defender)
@@ -101,16 +111,26 @@ function App() {
           />
         </div>
       </div>
-        <ActionsMenu
-          attackHp={() => actions.attackHp()}
-          attackDef={() => actions.attackDef()}
-          finishTurn={() => actions.finishTurn()}
-          updateAgresorStat={()=> actions.updateAgresorStat("Healt", agresorHealt + 1)}
-          defenderHealt={defenderHealt}
-          defenderArmor={defenderArmor}
-          damage={damage}
-          agresor={agresor}
-        />
+      <ActionsMenu
+        attackHp={() => {
+          actions.attackHp()
+          actions.finishTurn()
+        }}
+        attackDef={() => {
+          actions.attackDef()
+          actions.finishTurn()
+        }}
+        finishTurn={() => {
+          actions.finishTurn()
+        }}
+        updateAgresorStat={() =>
+          actions.updateAgresorStat("Healt", agresorHealt + 1)
+        }
+        defenderHealt={defenderHealt}
+        defenderArmor={defenderArmor}
+        damage={damage}
+        agresor={agresor}
+      />
       <RoundCounter turns={turns} />
     </div>
   )

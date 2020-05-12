@@ -1,11 +1,11 @@
 {
   "playerOne": {
     "Healt": 10,
-    "Armor": 6
+    "Armor": 8
   },
   "playerTwo": {
-    "Healt": 11,
-    "Armor": 4
+    "Healt": 12,
+    "Armor": 6
   }
 }
 
