@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react"
 import PlayerTurn from "./components/PlayerTurn"
 import ActionsMenu from "./components/ActionsMenu"
 import RoundCounter from "./components/RoundCounter"
+
 import "./styles/App.css"
+import "./styles/ActionsMenu.css"
+import "./styles/Warriors.css"
+import "./styles/PlayerTurn.css"
+
 import defaultStats from "./models/stats.json"
 import Warriors from "./components/Warriors"
 
@@ -15,6 +20,7 @@ function App() {
   const [agresor, setAggressor] = useState("playerOne")
   const [defender, setDefender] = useState("playerTwo")
   const [turns, setTurns] = useState(1)
+  const [history, setHistory] = useState({ 0: defaultStats })
   const players = { playerOne, playerTwo }
 
   let agresorHealt = players[agresor].Healt
@@ -31,21 +37,21 @@ function App() {
     attackHp: () => {
       const defenderLife = defenderHealt - damage
       if (damage > 0) {
-        defenderLife >= 0 
-        ? actions.updateDefenderStat("Healt", defenderHealt - damage)
-        : actions.updateDefenderStat('Healt', 0)
+        defenderLife >= 0
+          ? actions.updateDefenderStat("Healt", defenderHealt - damage)
+          : actions.updateDefenderStat("Healt", 0)
       } else {
         actions.updateDefenderStat("Healt", defenderHealt - 1)
       }
     },
     attackDef: () => {
       defenderArmor - 1 >= 0
-      ? actions.updateDefenderStat("Armor", defenderArmor - 1)
-      : actions.updateDefenderStat("Armor", 0)
+        ? actions.updateDefenderStat("Armor", defenderArmor - 1)
+        : actions.updateDefenderStat("Armor", 0)
     },
     finishTurn: () => {
       if (agresorHealt <= 0) {
-        actions.updateDefenderStat('Healt', 0)
+        actions.updateDefenderStat("Healt", 0)
         alert(defender + " WINS" + "  El juego se reiniciará")
         window.location.reload(true)
       } else {
@@ -71,6 +77,9 @@ function App() {
       let method = itemArray[0]
       items[method]()
     },
+    updateHistory: () => {
+      setHistory({ ...history, [turns]: { playerOne, playerTwo } })
+    },
   }
 
   let items = {
@@ -86,7 +95,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>Batalla en el Inframundod</h1>
+      <h1>Batalla en el Inframundo</h1>
       <PlayerTurn agresor={agresor} />
       <div className='actionsWrapper'>
         <div className='warriors' id='warrior-left'>
@@ -114,13 +123,16 @@ function App() {
       <ActionsMenu
         attackHp={() => {
           actions.attackHp()
+          actions.updateHistory()
           actions.finishTurn()
         }}
         attackDef={() => {
           actions.attackDef()
+          actions.updateHistory()
           actions.finishTurn()
         }}
         finishTurn={() => {
+          actions.updateHistory(9)
           actions.finishTurn()
         }}
         updateAgresorStat={() =>
@@ -132,6 +144,14 @@ function App() {
         agresor={agresor}
       />
       <RoundCounter turns={turns} />
+      {/* <div>
+        <div>Player One Last Turn: {history[turns - 1].playerOne.Healt}</div>
+        <div>Player One Last Turn: {history[turns - 1].playerOne.Armor}</div>
+      </div>
+      <div>
+        <div>Player Two Last Turn: {history[turns - 1].playerTwo.Healt}</div>
+        <div>Player Two Last Turn: {history[turns - 1].playerTwo.Armor}</div>
+      </div> */}
     </div>
   )
 }

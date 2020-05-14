@@ -4,8 +4,7 @@ function PlayerTurn(props) {
   return (
     <div>
       <h3>
-        Player{"  "}
-        <span id={props.agresor}>{props.agresor === "playerOne" ? "one" : "two"}</span>
+        <span id={props.agresor}>{props.agresor === "playerOne" ? "iceMan" : "fireMonster"}</span>
         {"  "}
         turn
       </h3>

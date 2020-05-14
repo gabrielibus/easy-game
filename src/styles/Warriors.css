@@ -1,0 +1,50 @@
+.playerOne, .playerTwo {
+  /* width: 100%; */
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0.55rem 0;
+}
+
+#playerOne {
+  background-color: #2979ff;
+  /* display: flex;
+  align-items: center; */
+  padding: 0.2rem 0.4rem;
+  border-radius: 2rem;
+}
+
+#playerTwo {
+  background-color: #ff3d00;
+  padding: 0.2rem 0.4rem;
+  border-radius: 2rem;
+}
+
+.healt,
+.armor {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: white;
+  padding: 0.3rem 0.5rem;
+  /* margin: 0 0.4rem; */
+  border-radius: 1rem;
+}
+/* .healt {
+  background-color: #b71c1c;
+}
+.armor {
+  background-color: #0d47a1;
+} */
+
+.playerStats {
+  width: 10vh;
+
+}
+
+.playerStats img {
+  margin-right: 0.4rem;
+}

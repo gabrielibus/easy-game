@@ -1,8 +1,9 @@
 import React from "react"
+import { Popup, Rating } from "semantic-ui-react"
 import sword from "../images/sword.png"
 import shield from "../images/shield.png"
 import beer from "../images/beer.png"
-import { Popup, Rating } from "semantic-ui-react"
+
 function ActionsMenu(props) {
   const agg = props.agresor === "playerOne" ? "bottom" : "left"
 
@@ -61,7 +62,7 @@ function ActionsMenu(props) {
             <Rating
               icon='star'
               defaultRating={1}
-              maxRating={props.defenderArmor}
+              maxRating={3}
             />
           </Popup.Content>
         </div>
