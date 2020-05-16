@@ -1,98 +1,80 @@
-import React from "react"
-import { Popup, Rating } from "semantic-ui-react"
+import React, { Component } from "react"
 import sword from "../images/sword.png"
 import shield from "../images/shield.png"
 import beer from "../images/beer.png"
 
-function ActionsMenu(props) {
-  const agg = props.agresor === "playerOne" ? "bottom" : "left"
+import ReactTooltip from "react-tooltip"
 
+{
+  /* 
+<a data-tip="React-tooltip"> 
+  ◕‿‿◕ 
+</a>
+<ReactTooltip 
+  place="left" 
+  type="error" 
+  effect="float"
+/> 
+
+*/
+}
+
+function ActionsMenu(props) {
   function AttackModal() {
+    const msj = `tu ataque <br> dañará ${props.statesCopy.damage}  puntos <br> de SALUD`
+    let color = 'info'
     return (
-      <div className='modals'>
-        <Popup
-          trigger={
-            <div
-              className='icons'
-              id='attackHealt'
-              onClick={() => props.attackHp()}>
-              {" "}
-              <img src={sword} alt='swords' /> <div>atacar</div>
-              <p id='damageHealt'></p>
-            </div>
-          }
-          position={"bottom center"}
-          closeOnDocumentClick>
-          <div className='modalHeader'>
-            <Popup.Header>Ataque de daño: {props.damage}</Popup.Header>
+      <div>
+        <a data-tip={msj} className='modals'>
+          <div
+            accessKey='a'
+            className='icons'
+            id='attackHealt'
+            onClick={() => props.actionsMenuActions.attackHp()}>
+            {" "}
+            <img src={sword} alt='swords' /> <div>atacar</div>
+            <p id='damageHealt'></p>
           </div>
-          <div className='modalContent'>
-            <Popup.Content>
-              <Rating
-                icon='star'
-                defaultRating={props.damage}
-                maxRating={props.defenderHealt}
-              />
-            </Popup.Content>
-          </div>
-        </Popup>
+        </a>
+        <ReactTooltip multiline='true' clickable='true' place='bottom' type={color} effect='float' />
       </div>
     )
   }
 
+
+
   function WeakenModal() {
+    const msj = `tu ataque <br> dañará ${1} puntos <br> de ARMADURA`
     return (
-      <Popup
-        trigger={
-          <div
-            className='icons'
-            id='attackArmor'
-            onClick={() => props.attackDef()}>
-            <img src={shield} alt='shields' />
-            <div>debilitar</div>
-          </div>
-        }
-        position='bottom center'
-        closeOnDocumentClick>
-        <div className='modalHeader'>
-          <Popup.Header>Ataque de armadura: 1</Popup.Header>
-        </div>
-        <div className='modalContent'>
-          <Popup.Content>
-            <Rating
-              icon='star'
-              defaultRating={1}
-              maxRating={3}
-            />
-          </Popup.Content>
-        </div>
-      </Popup>
+      <div>
+        <a
+          data-tip={msj}
+          accessKey='s'
+          className='icons'
+          id='attackArmor'
+          onClick={() => props.actionsMenuActions.attackDef()}>
+          <img src={shield} alt='shields' />
+          <div>debilitar</div>
+        </a>
+        {/* <ReactTooltip  place='bottom' type='info' effect='float' /> */}
+      </div>
     )
   }
 
   function PassModal() {
+    const msj = `Una pola para <br> restaurar 1 punto <br> de salud`
     return (
-      <Popup
-        trigger={
-          <div
-            className='icons'
-            onClick={() => {
-            props.updateAgresorStat()
-              props.finishTurn()
-            }}>
-            <img src={beer} alt='beers' />
-            <div>pasar</div>
-          </div>
-        }
-        position='bottom center'
-        closeOnDocumentClick>
-        <div className='modalContent'>
-          <span>
-            Una <img src={beer} id='smallBeer' alt='beers' /> para recuperar{" "}
-            <br></br> <b>1</b> punto de salud
-          </span>
-        </div>
-      </Popup>
+      <a
+        data-tip={msj}
+        accessKey='p'
+        className='icons'
+        onClick={() => {
+          props.actionsMenuActions.updateAgresorStat()
+          props.actionsMenuActions.finishTurn()
+        }}>
+        <img src={beer} alt='beers' />
+        <div>pasar</div>
+      </a>
     )
   }
 
