@@ -1,22 +1,24 @@
 import React from "react"
 import sword from "../images/sword.png"
 import shield from "../images/shield.png"
+import iceMan from "../images/iceMan.png"
+import monsterFire from "../images/monsterFire.png"
 
-function Warriors(props) {
 
+function Warriors({ player }) {
+  const icon = player.avatar === 'iceMan' ? iceMan : monsterFire
+  
   return (
     <div>
-      <img id={props.player.position} src={props.player.avatar} alt='warrior' />
-      <div
-        className={props.player.playerId}
-        id={props.statesCopy.agresor === "playerOne" ? "active" : ""}>
+      <img id={player.position} src={icon} alt='warrior' />
+      <div className={player.playerId}>
         <div className='healt playerStats'>
           <img src={sword} alt='swords' />
-          <div>{props.player.healt}</div>
+          <div>{player.healt}</div>
         </div>
         <div className='armor playerStats'>
           <img src={shield} alt='shield' />
-          <div>{props.player.armor}</div>
+          <div>{player.armor}</div>
         </div>
       </div>
     </div>
@@ -24,7 +26,3 @@ function Warriors(props) {
 }
 
 export default Warriors
-
-
-
-

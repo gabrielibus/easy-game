@@ -1,11 +1,17 @@
 {
   "playerOne": {
-    "Healt": 4,
-    "Armor": 1
+    "healt": 4,
+    "armor": 1,
+    "avatar": "iceMan",
+    "playerId": "playerOne",
+    "position": "playerLeft"
   },
   "playerTwo": {
-    "Healt": 7,
-    "Armor": 1
+    "healt": 7,
+    "armor": 1,
+    "avatar": "monsterFire",
+    "playerId": "playerTwo",
+    "position": "playerRight"
   }
 }
 
