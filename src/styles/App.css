@@ -1,11 +1,8 @@
 body {
-  /* font-family: "Titillium Web", sans-serif;
-  font-family: "Spartan", sans-serif; */
   font-size: 16px;
   max-width: 780px;
   margin: auto;
   background-color: whitesmoke;
-  /* background}-color: rgb(88, 89, 167); */
 }
 
 .App {
@@ -15,92 +12,43 @@ body {
   margin: auto;
 }
 
-h1 {
+#title {
   font-family: "Titillium Web";
   font-size: 2.5rem;
 }
 
-button {
-  margin: 0rem 0.5rem;
-  padding: 0.3rem;
-}
-/* 
-.playerOne {
-  display: flex;
-  flex-direction: column;
-  padding: 0.55rem 0;
-}
-
-.playerTwo {
-  display: flex;
-  flex-direction: column;
-  padding: 0.55rem 0;
-} */
-
-.items {
-  display: inline-block;
-}
-
-.items button {
-  margin: 0.2rem;
-}
-
-img {
-  width: 30px;
-}
-
-#smallBeer {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 .actionsWrapper {
-  width: 90%;
+  width: 100%;
   background-color: rgb(230, 230, 230);
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.5rem;
   margin: auto;
   margin-top: 1rem;
 }
 
-.vsDiv {
+.warriors {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+#backgroundBlue {
+  background-color: #2979ff;
+}
+
+#backgroundRed {
+  background-color: #ff6a6a;
+}
+
+.versusDiv {
   font-size: 3rem;
   font-weight: bold;
 }
 
-
-.red {
-  cursor: pointer;
-  background-color: rgb(231, 231, 231);
-  border-radius: 0.5rem;
-  color: #b71c1c;
-  padding: 0.5rem;
-  font-weight: bold;
-}
-.blue {
-  background-color: rgb(228, 228, 228);
-  border-radius: 0.5rem;
-  color: #0d47a1;
-  padding: 0.5rem;
-  font-weight: bold;
-}
-
-#attackHealt:hover {
-  color: #b71c1c;
-}
-
-#attackArmor:hover .blue {
-  color: #0d47a1;
-}
-
-.btnsChoice {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+img {
+  width: 30px;
 }
 
 .icons p {
@@ -108,23 +56,6 @@ img {
 }
 .icons img {
   margin-right: 0.4rem;
-}
-.warriors {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-}
-
-#warrior-left {
-  background-color: #2979ff;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
-
-#warrior-right {
-  background-color: #ff6a6a;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 }
 
 .warriors img {
@@ -135,68 +66,9 @@ img {
 }
 
 #bgColorRed {
-  background-color: #ff6b6b49;
+  background-color: #ffb5b549;
 }
+
 #bgColorBlue {
-  background-color: #2978ff4d;
-}
-
-/* #playerOne {
-  background-color: #2979ff;
-  padding: 0.2rem 0.4rem;
-  border-radius: 2rem;
-}
-
-#playerTwo {
-  background-color: #ff3d00;
-  padding: 0.2rem 0.4rem;
-  border-radius: 2rem;
-} */
-
-.turnOne {
-  background-color: #2979ff;
-  border-radius: 1rem;
-  padding: 0.3rem 0.5rem;
-}
-
-.turnTwo {
-  background-color: #ff3d00;
-  border-radius: 1rem;
-  padding: 0.3rem 0.5rem;
-}
-
-/* .healt,
-.armor {
-  font-size: 100%;
-  font-weight: 500;
-  color: white;
-  text-align: left;
-  padding: 0.3rem 0.8rem;
-  margin: 0 0.4rem;
-  margin: auto;
-}
-.healt {
-  background-color: #b71c1c;
-}
-.armor {
-  background-color: #0d47a1;
-} */
-
-#drainHealt,
-#indicatorTwo {
-  font-weight: bolder;
-  font-size: 2.5rem;
-  margin-top: -5.5rem;
-  margin-left: 0rem;
-  margin-bottom: 4rem;
-  color: black;
-}
-
-.transparent {
-  color: transparent;
-}
-
-#indicatorTwo,
-#indicatorOne {
-  color: red;
+  background-color: #9ec1ff4d;
 }

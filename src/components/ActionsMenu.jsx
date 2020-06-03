@@ -1,4 +1,6 @@
 import React from "react"
+
+//Icons
 import sword from "../images/sword.png"
 import shield from "../images/shield.png"
 import beer from "../images/beer.png"
@@ -10,14 +12,11 @@ function ActionsMenu({ damage, actionButtons}) {
     let color = "info"
     return (
       <div>
-        <a data-tip={msj} href='/#' className='modals'>
+        <a data-tip={msj} href='/#'>
           <div
-            className='icons'
-            id='attackHealt'
+            className='icons hooverRed'
             onClick={() => actionButtons.attack()}>
-            {" "}
             <img src={sword} alt='swords' /> <div>atacar</div>
-            <p id='damageHealt'></p>
           </div>
         </a>
         <ReactTooltip
@@ -38,8 +37,7 @@ function ActionsMenu({ damage, actionButtons}) {
         <a
           href='/#'
           data-tip={msj}
-          className='icons'
-          id='attackArmor'
+          className='icons hooverBlue'
           onClick={() => actionButtons.breakArmor()}>
           <img src={shield} alt='shields' />
           <div>debilitar</div>
@@ -55,7 +53,7 @@ function ActionsMenu({ damage, actionButtons}) {
       <a
         href='/#'
         data-tip={msj}
-        className='icons'
+        className='icons hooverBrown'
         onClick={() => {
           actionButtons.passTurn()
         }}>
@@ -66,12 +64,10 @@ function ActionsMenu({ damage, actionButtons}) {
   }
 
   return (
-    <div className='actionsMenu'>
-      <div className='iconsWrapper'>
+    <div className='buttonsWrapper'>
         <AttackBtn />
         <BreakArmorBtn />
         <PassBtn />
-      </div>
     </div>
   )
 }

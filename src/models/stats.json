@@ -1,14 +1,64 @@
 {
-  "playerOne": {
-    "healt": 4,
-    "armor": 1,
-    "avatar": "iceMan",
+  "heMan": {
+    "name": "heMan",
+    "healt": 5,
+    "armor": 5,
+    "avatar": "heMan",
     "playerId": "playerOne",
     "position": "playerLeft"
   },
+  "theKnigth": {
+    "name": "theKnight",
+    "healt": 5,
+    "armor": 5,
+    "avatar": "theKnight",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
+  "playerOne": {
+    "name": "player",
+    "healt": 6,
+    "armor": 5,
+    "avatar": "iceMan",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
   "playerTwo": {
+    "name": "player",
     "healt": 7,
-    "armor": 1,
+    "armor": 4,
+    "avatar": "monsterFire",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
+  "iceMan": {
+    "name": "iceMan",
+    "healt": 7,
+    "armor": 4,
+    "avatar": "iceMan",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
+  "monsterFire3": {
+    "name": "player",
+    "healt": 7,
+    "armor": 4,
+    "avatar": "monsterFire",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
+  "monsterFire4": {
+    "name": "player",
+    "healt": 7,
+    "armor": 4,
+    "avatar": "monsterFire",
+    "playerId": "playerTwo",
+    "position": "playerRight"
+  },
+  "monsterFire5": {
+    "name": "player",
+    "healt": 7,
+    "armor": 4,
     "avatar": "monsterFire",
     "playerId": "playerTwo",
     "position": "playerRight"

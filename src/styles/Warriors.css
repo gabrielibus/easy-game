@@ -1,23 +1,8 @@
 .playerOne, .playerTwo {
-  /* width: 100%; */
   display: flex;
   justify-content: center;
   flex-direction: row;
   padding: 0.55rem 0;
-}
-
-#playerOne {
-  background-color: #2979ff;
-  /* display: flex;
-  align-items: center; */
-  padding: 0.2rem 0.4rem;
-  border-radius: 2rem;
-}
-
-#playerTwo {
-  background-color: #ff3d00;
-  padding: 0.2rem 0.4rem;
-  border-radius: 2rem;
 }
 
 .healt,
@@ -34,10 +19,8 @@
   border-radius: 1rem;
 }
 
-
 .playerStats {
   width: 10vh;
-
 }
 
 .playerStats img {

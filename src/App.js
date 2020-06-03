@@ -1,13 +1,20 @@
 import React, { useState } from "react"
+
+//Components
 import PlayerTurn from "./components/PlayerTurn"
 import ActionsMenu from "./components/ActionsMenu"
+import Warriors from "./components/Warriors"
 import RoundCounter from "./components/RoundCounter"
+import StartPage from './components/StarPage'
+
+//Styles
 import "./styles/App.css"
 import "./styles/ActionsMenu.css"
 import "./styles/Warriors.css"
 import "./styles/PlayerTurn.css"
+
+//Models & Methods
 import defaultStats from "./models/stats.json"
-import Warriors from "./components/Warriors"
 import attack from "./actions/attacks"
 
 function App() {
@@ -73,14 +80,15 @@ function App() {
 
   return (
     <div className='App' id={agresor === 'playerOne' ? 'bgColorBlue' : 'bgColorRed'}>
-      <h1>Batalla en el Inframundo</h1>
-      <PlayerTurn agresor={agresor} />
+      <h1 id='title'>Batalla en el Inframundo</h1>
+      <StartPage  />
+      <PlayerTurn agresor={agresor} players={gamePlayersCopy}/>
       <div className='actionsWrapper'>
-        <div className='warriors' id='warrior-left'>
+        <div className='warriors' id='backgroundBlue'>
           <Warriors player={gamePlayersCopy.playerOne} />
         </div>
-        <div className='vsDiv'>vs</div>
-        <div className='warriors' id='warrior-right'>
+        <div className='versusDiv'>vs</div>
+        <div className='warriors' id='backgroundRed'>
           <Warriors player={gamePlayersCopy.playerTwo} />
         </div>
       </div>

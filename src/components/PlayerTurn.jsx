@@ -1,11 +1,10 @@
 import React from "react"
 
-function PlayerTurn(props) {
+function PlayerTurn({agresor, players}) {
   return (
     <div>
       <h3>
-        <span id={props.agresor}>{props.agresor === "playerOne" ? "iceMan" : "fireMonster"}</span>
-        {"  "}
+        <span id={agresor}>{players[agresor].avatar }</span>
         turn
       </h3>
     </div>
